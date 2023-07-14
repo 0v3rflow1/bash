@@ -25,7 +25,7 @@ metaScrap(){
 
 	elif [[ $target =~ $patternCodePost ]]; then
 	
-		threadCode="${target:1}";
+		threadCode="$target";
 		echo "Procesando el threadCode: $threadCode";
 		threadId=$(getThreadIdByThreadCode $threadCode);
 		getThread $threadId;
@@ -49,7 +49,7 @@ getFromThreadsDotNet(){
 
 getThreadIdByThreadCode(){
 	threadCode=$1;
-	r=$(curl -s 'https://www.threads.net/t/CupSoLsgyoc' \
+	r=$(curl -sL "https://www.threads.net/t/"$threadCode \
   -H 'authority: www.threads.net' \
   -H 'accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7' \
   -H 'accept-language: es-419,es;q=0.9' \
